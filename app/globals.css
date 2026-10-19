@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-h: 64px;
+  --tab-h: 68px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --nav-h: 80px;
+    --tab-h: 0px;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    overflow-x: clip;
+    padding-bottom: calc(var(--tab-h) + env(safe-area-inset-bottom, 0px));
+  }
+  img,
+  svg,
+  video {
+    max-width: 100%;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-rose;
+  }
+}
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
+  }
+  .section {
+    @apply py-14 md:py-20 lg:py-28;
+  }
+  .h2 {
+    @apply font-serif text-[1.5rem] font-bold leading-[1.2] sm:text-4xl lg:text-5xl;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-rose px-6 py-3.5 text-sm font-bold text-white shadow-[0_8px_20px_-8px_rgba(201,117,129,.7)] transition hover:bg-roseDark active:scale-[.98];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-rose/40 bg-white px-6 py-3.5 text-sm font-bold text-wine transition hover:border-rose;
+  }
+  .chip {
+    @apply rounded-full bg-ink/[0.06] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wide text-ink/70;
+  }
+}
+/* Hero = full viewport height minus the navbar (vh fallback, then svh) */
+.hero-h {
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+}
+.defer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
