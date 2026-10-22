@@ -51,7 +51,7 @@ export const FILTERS = [
   { id: "video", label: "Video Edits" },
   { id: "ai", label: "AI Creations" },
 ];
-const makeVideos = (cat, folder, count = 4) =>
+const makeVideos = (cat, folder, count) =>
   Array.from({ length: count }, (_, i) => ({
     id: `${cat}-${i + 1}`,
     cat,
@@ -60,8 +60,8 @@ const makeVideos = (cat, folder, count = 4) =>
   }));
 
 export const WORKS = [
-  ...makeVideos("video", "video"),
-  ...makeVideos("ai", "ai"),
+  ...makeVideos("video", "video", 7),
+  ...makeVideos("ai", "ai", 4),
 ];
 
 export const GALLERY = Array.from({ length: 6 }, (_, i) => ({
